@@ -1,0 +1,4 @@
+<!-- MIDDLE LAYER: a translucent wave. Moves at medium speed. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 400" preserveAspectRatio="none">
+  <path d="M0 160 C240 60 480 260 720 160 S1200 60 1440 170 V400 H0Z" fill="#2fa4b8" fill-opacity=".55"/>
+</svg>
