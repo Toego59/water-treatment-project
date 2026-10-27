@@ -1,0 +1,93 @@
+/* ==========================================================
+   styles.css: all the look-and-feel for the site.
+   Change the colours/fonts in :root and the whole site updates.
+   ========================================================== */
+
+/* 1. DESIGN TOKENS: one place to edit the theme */
+:root {
+  --deep:  #0b3c49;   /* dark teal: dark sections, headings */
+  --aqua:  #2fa4b8;   /* mid teal: buttons, accents */
+  --mist:  #eaf6f7;   /* page background */
+  --ice:   #bfe9f2;   /* light text on dark */
+  --amber: #f2b134;   /* highlight (chlorine yellow) */
+  --ink:   #10303a;   /* body text */
+  --radius: 14px;
+  --font-head: "Young Serif", Georgia, serif;
+  --font-body: "Nunito Sans", system-ui, sans-serif;
+}
+
+/* 2. BASE */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--mist); color: var(--ink); font: 1.05rem/1.7 var(--font-body); }
+h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; margin: 0 0 .5em; font-weight: 400; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--deep); }
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }  /* visible keyboard focus */
+
+/* 3. NAV: floats over the hero */
+.nav { position: fixed; inset: 0 0 auto 0; z-index: 10; display: flex; gap: 1.5rem; flex-wrap: wrap;
+       padding: .9rem 5vw; background: rgba(11,60,73,.85); backdrop-filter: blur(6px); }
+.nav a { color: var(--ice); text-decoration: none; font-weight: 600; font-size: .95rem; }
+.nav a:hover { color: #fff; }
+.nav__brand { font-family: var(--font-head); color: #fff !important; margin-right: auto; }
+
+/* 4. HERO: stacked layers. JS moves each layer by a different amount on scroll */
+.hero { position: relative; min-height: 100vh; overflow: hidden; background: var(--deep); display: grid; place-items: center; }
+.hero__layer { position: absolute; left: 0; width: 100%; height: 130%; top: -10%; object-fit: cover;
+               transform: translateY(calc(var(--scroll, 0) * var(--speed, 0))); }
+.hero__layer--wave  { top: auto; bottom: 0; height: 55%; }
+.hero__layer--front { top: auto; bottom: -1px; height: 22%; }
+.hero__text { position: relative; z-index: 2; max-width: 40rem; padding: 6rem 5vw 8rem; color: #fff; }
+.hero__text h1 { font-size: clamp(2.4rem, 7vw, 4.6rem); }
+.hero__text p  { color: var(--ice); font-size: 1.2rem; }
+.btn { display: inline-block; padding: .8rem 1.6rem; border-radius: 999px; background: var(--amber); color: var(--deep);
+       font-weight: 700; text-decoration: none; transition: transform .2s; }
+.btn:hover { transform: translateY(-2px); }
+
+/* 5. SECTIONS */
+.section { padding: 5rem 5vw; max-width: 72rem; margin: 0 auto; }
+.section--dark, .section--tint { max-width: none; }                 /* full-width coloured bands... */
+.section--dark { background: var(--deep); color: #fff; }
+.section--dark h2 { color: #fff; }
+.section--tint { background: #d5eef1; }
+.section--dark > *, .section--tint > * { max-width: 66rem; margin-inline: auto; }  /* ...with centred content */
+.lead { font-size: 1.25rem; max-width: 42rem; }
+
+/* 6. CARDS: the width of each card grid adapts to the screen */
+.grid { display: grid; gap: 1.2rem; margin-top: 2rem; }
+.grid--3 { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.grid--2 { grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); }
+.card { background: #fff; border-radius: var(--radius); padding: 1.5rem; border-left: 6px solid var(--aqua); }
+.card h3 { color: var(--deep); font-size: 1.3rem; }
+.card small { font-family: var(--font-body); font-size: .8rem; color: #4d7480; }
+.card p { margin: 0; }
+
+/* 7. INTERACTIVE TANK */
+.lab { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; align-items: start; margin-top: 2rem; }
+.tank { margin: 0; }
+.tank svg { width: 100%; height: auto; display: block; }
+.tank figcaption { margin-top: .6rem; color: var(--ice); font-size: .95rem; }
+#water { transition: fill 1.2s ease; }
+.dot { transition: transform 1.4s ease, opacity 1s ease; }          /* smooth movement between steps */
+.dot--dirt { fill: #6b4a2b; }
+.dot--germ { fill: #7ddc6f; stroke: #1c5a14; stroke-width: .8; }
+.steps__list { display: grid; gap: .5rem; margin-bottom: 1.5rem; }
+.step-btn { text-align: left; padding: .7rem 1rem; border-radius: 10px; border: 2px solid rgba(191,233,242,.35);
+            background: transparent; color: #fff; font: inherit; cursor: pointer; }
+.step-btn[aria-pressed="true"] { background: var(--ice); color: var(--deep); border-color: var(--ice); font-weight: 700; }
+.steps__info { background: rgba(255,255,255,.08); border-radius: var(--radius); padding: 1.2rem 1.4rem; }
+.steps__info h3 { color: #fff; }
+.chem { color: var(--amber); font-weight: 700; margin: 0 0 .4rem; }
+
+/* 8. FOOTER */
+.footer { background: var(--deep); color: var(--ice); padding: 2rem 5vw; font-size: .9rem; }
+
+/* 9. SMALL SCREENS: stack the tank above the steps */
+@media (max-width: 800px) { .lab { grid-template-columns: 1fr; } .nav { gap: .8rem; } }
+
+/* 10. ACCESSIBILITY: people who ask for less motion get none */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .dot, #water, .btn { transition: none; }
+  .hero__layer { transform: none; }
+}
