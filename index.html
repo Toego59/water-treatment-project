@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clear by Chemistry: how water treatment makes water safe to drink</title>
+  <meta name="description" content="A plain-English guide to the chemical steps that turn muddy water into safe drinking water.">
+  <!-- Fonts: a friendly serif for headings, a clean sans for reading. Fallbacks keep the page fine offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- NAV: simple anchor links that jump to each section -->
+  <nav class="nav" aria-label="Main">
+    <a class="nav__brand" href="#top">Clear by Chemistry</a>
+    <a href="#problem">The problem</a>
+    <a href="#lab">The 5 steps</a>
+    <a href="#chemicals">The chemicals</a>
+    <a href="#safety">Is it safe?</a>
+  </nav>
+
+  <!-- LAYER 1: PARALLAX HERO. Three images scroll at different speeds (set in js/main.js via data-speed). -->
+  <header class="hero" id="top">
+    <img class="hero__layer" data-speed="0.15" src="assets/images/hero-back.svg"  alt="">
+    <img class="hero__layer hero__layer--wave" data-speed="0.30" src="assets/images/hero-mid.svg" alt="">
+    <div class="hero__text">
+      <h1>Clean water is a chemistry trick.</h1>
+      <p>How do chemical processes make water safer to drink? Follow a glass of muddy river water through five steps and watch it change.</p>
+      <a class="btn" href="#lab">Start the journey</a>
+    </div>
+    <img class="hero__layer hero__layer--front" data-speed="0.05" src="assets/images/hero-front.svg" alt="">
+  </header>
+
+  <main>
+    <!-- LAYER 2: THE PROBLEM -->
+    <section class="section" id="problem">
+      <h2>What is wrong with river water?</h2>
+      <p class="lead">It looks fine from far away. Up close, it carries three kinds of trouble.</p>
+      <div class="grid grid--3">
+        <article class="card"><h3>Tiny dirt</h3><p>Clay and silt are so small they never sink on their own. They make water cloudy and can carry germs.</p></article>
+        <article class="card"><h3>Germs</h3><p>Bacteria, viruses and parasites can make people very ill. You cannot see them.</p></article>
+        <article class="card"><h3>Dissolved stuff</h3><p>Some metals and chemicals mix into water completely. Treatment plants test for these and remove them.</p></article>
+      </div>
+    </section>
+
+    <!-- LAYER 3: INTERACTIVE TANK. Buttons on the right change the picture on the left. -->
+    <section class="section section--dark" id="lab">
+      <h2>Watch the water change</h2>
+      <p class="lead">Press each step. Brown dots are dirt. Green dots are germs.</p>
+      <div class="lab">
+        <figure class="tank">
+          <svg viewBox="0 0 400 340" role="img" aria-labelledby="tank-title tank-desc">
+            <title id="tank-title">A tank of water being treated</title>
+            <desc id="tank-desc">Dirt and germ particles move, clump, sink or disappear as each step is chosen.</desc>
+            <defs><clipPath id="tank-clip"><rect x="20" y="30" width="360" height="280" rx="10"/></clipPath></defs>
+            <g clip-path="url(#tank-clip)">
+              <rect id="water" x="20" y="30" width="360" height="280"/>
+              <g id="particles"></g> <!-- dots are created by js/main.js -->
+            </g>
+            <rect x="20" y="30" width="360" height="280" rx="10" fill="none" stroke="#bfe9f2" stroke-width="3"/>
+          </svg>
+          <figcaption id="tank-caption">Raw water: cloudy and full of germs.</figcaption>
+        </figure>
+
+        <div class="steps">
+          <div class="steps__list" id="step-buttons" role="group" aria-label="Treatment steps"></div>
+          <div class="steps__info" aria-live="polite">
+            <h3 id="info-title"></h3>
+            <p class="chem" id="info-chem"></p>
+            <p id="info-text"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAYER 4: CHEMICAL CARDS -->
+    <section class="section" id="chemicals">
+      <h2>The chemicals, in plain words</h2>
+      <div class="grid grid--2">
+        <article class="card"><h3>Alum <small>(aluminium sulfate)</small></h3><p>Its positive charge cancels the negative charge on dirt, so the dirt stops pushing itself apart and starts sticking together.</p></article>
+        <article class="card"><h3>Lime or soda ash</h3><p>These adjust the pH, how acidic the water is. Coagulation works best in a narrow pH range, and balanced water is gentler on pipes.</p></article>
+        <article class="card"><h3>Chlorine</h3><p>In water it forms hypochlorous acid, which breaks into germs and stops them working. A small amount stays behind to protect water in the pipes.</p></article>
+        <article class="card"><h3>Ozone <small>(or UV light)</small></h3><p>Ozone is a very reactive form of oxygen that destroys germs fast. It leaves no lasting taste, so plants often add a little chlorine after it.</p></article>
+      </div>
+    </section>
+
+    <!-- LAYER 5: SAFETY -->
+    <section class="section section--tint" id="safety">
+      <h2>So is it safe?</h2>
+      <p class="lead">Yes, when the plant is run well. Treatment is a series of safety nets: each step catches what the one before it missed.</p>
+      <p>Chemistry has a cost too. Chlorine can react with natural material to make by-products, so regulators set limits, and operators test the water many times a day. Always check your local water report for exact numbers.</p>
+    </section>
+  </main>
+
+  <footer class="footer"><p>A research project on water treatment. Check facts against your national water regulator and the WHO drinking-water guidelines.</p></footer>
+</body>
+</html>
